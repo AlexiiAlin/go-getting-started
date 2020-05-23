@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -111,7 +112,7 @@ func (uc *userController) delete(id int, w http.ResponseWriter) {
 }
 
 func (uc *userController) parseRequest(r *http.Request) (models.User, error) {
-	dec := json.newDecoder(r.Body)
+	dec := json.NewDecoder(r.Body)
 	var u models.User
 	err := dec.Decode(&u)
 	if err != nil {
